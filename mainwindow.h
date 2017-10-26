@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 
 #include "inventoryedit.h"
+#include "stockedit.h"
 
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,7 @@ private:
     Ui::MainWindow *ui;
 
     InventoryEdit *invEdit;
+    StockEdit *stockEdit;
 
     QGroupBox *group;
 

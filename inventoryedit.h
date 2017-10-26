@@ -29,6 +29,7 @@ private:
     QLabel *lblTipeAdd;
     QLabel *lblStockAdd;
     QLabel *lblNameDel;
+    QLabel *lblStockDel;
     QLabel *lblNameEdit;
     QLabel *lblTipeEdit;
     QLabel *lblStockEdit;
@@ -37,6 +38,7 @@ private:
     QLineEdit *lnTipeAdd;
     QLineEdit *lnStockAdd;
     QLineEdit *lnNameDel;
+    QLineEdit *lnStockDel;
     QLineEdit *lnNameEdit;
     QLineEdit *lnTipeEdit;
     QLineEdit *lnStockEdit;

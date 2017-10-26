@@ -17,6 +17,7 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     lblTipeAdd = new QLabel("Тип инвентаря");
     lblStockAdd = new QLabel("Номер склада");
     lblNameDel = new QLabel("Наименование инвентаря");
+    lblStockDel = new QLabel("Номер склада");
     lblNameEdit = new QLabel("Наименование инвентаря");
     lblTipeEdit = new QLabel("Тип инвентаря");
     lblStockEdit = new QLabel("Номер склада");
@@ -25,6 +26,7 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     lnTipeAdd = new QLineEdit;
     lnStockAdd = new QLineEdit;
     lnNameDel = new QLineEdit;
+    lnStockDel = new QLineEdit;
     lnNameEdit = new QLineEdit;
     lnTipeEdit = new QLineEdit;
     lnStockEdit = new QLineEdit;
@@ -51,8 +53,13 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     lay4->addWidget(lblNameDel);
     lay4->addWidget(lnNameDel);
 
+    QHBoxLayout *lay41 = new QHBoxLayout;
+    lay41->addWidget(lblStockDel);
+    lay41->addWidget(lnStockDel);
+
     QVBoxLayout *layDel = new QVBoxLayout;
     layDel->addLayout(lay4);
+    layDel->addLayout(lay41);
     layDel->addWidget(butDel);
 
     groupDel->setLayout(layDel);

@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
         toolbars.at(i)->hide();
 
     invEdit = new InventoryEdit;
+    stockEdit = new StockEdit;
 
     group = new QGroupBox("Добавить/Удалить/Изменить:");
 
@@ -36,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setCentralWidget(group);
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
+    connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
 }
 
 MainWindow::~MainWindow()
