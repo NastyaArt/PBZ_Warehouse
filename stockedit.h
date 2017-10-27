@@ -26,7 +26,9 @@ private:
     QLabel *lblNumbAdd;
     QLabel *lblNameAdd;
     QLabel *lblPhoneAdd;
+
     QLabel *lblNumbDel;
+
     QLabel *lblNumbEdit;
     QLabel *lblNameEdit;
     QLabel *lblPhoneEdit;

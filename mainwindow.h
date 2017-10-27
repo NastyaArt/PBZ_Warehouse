@@ -8,6 +8,7 @@
 
 #include "inventoryedit.h"
 #include "stockedit.h"
+#include "salesinvoiceedit.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,13 +27,14 @@ private:
 
     InventoryEdit *invEdit;
     StockEdit *stockEdit;
+    SalesInvoiceEdit *salesEdit;
 
     QGroupBox *group;
 
     QPushButton *butInventory;
     QPushButton *butStock;
-    QPushButton *butPurchaseInv;
-    QPushButton *butSalesInv;
+    QPushButton *butPurchase;
+    QPushButton *butSales;
 
 };
 

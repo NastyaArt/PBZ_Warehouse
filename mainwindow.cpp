@@ -14,19 +14,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     invEdit = new InventoryEdit;
     stockEdit = new StockEdit;
+    salesEdit = new SalesInvoiceEdit;
 
     group = new QGroupBox("Добавить/Удалить/Изменить:");
 
     butInventory = new QPushButton("Рабочий инвентарь");
     butStock = new QPushButton("Склад");
-    butPurchaseInv = new QPushButton("Приходная накладная");
-    butSalesInv = new QPushButton("Расходная накладная");
+    butPurchase = new QPushButton("Приходная накладная");
+    butSales = new QPushButton("Расходная накладная");
 
     QVBoxLayout *layBut = new QVBoxLayout;
     layBut->addWidget(butInventory);
     layBut->addWidget(butStock);
-    layBut->addWidget(butPurchaseInv);
-    layBut->addWidget(butSalesInv);
+    layBut->addWidget(butPurchase);
+    layBut->addWidget(butSales);
 
     layBut->setAlignment(Qt::AlignTop);
 
@@ -38,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
     connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
+
+    connect (butSales, SIGNAL(clicked()), salesEdit, SLOT(show()));
 }
 
 MainWindow::~MainWindow()

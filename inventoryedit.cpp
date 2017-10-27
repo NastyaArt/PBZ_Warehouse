@@ -15,7 +15,7 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
 
     lblNameAdd = new QLabel("Наименование инвентаря");
     lblTipeAdd = new QLabel("Тип инвентаря");
-    lblStockAdd = new QLabel("Номер склада");
+    lblStockAdd = new QLabel("Номер склада");  // номер склада не нужен !?
     lblNameDel = new QLabel("Наименование инвентаря");
     lblStockDel = new QLabel("Номер склада");
     lblNameEdit = new QLabel("Наименование инвентаря");
