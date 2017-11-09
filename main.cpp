@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     QObject::connect(&base, SIGNAL(EditStatusInv(bool, QString)), w.invEdit, SLOT(EditStatus(bool, QString)));
 
     QObject::connect(&base, SIGNAL(AddStatusStock(bool, QString)), w.stockEdit, SLOT(AddStatus(bool, QString)));
-    QObject::connect(&base, SIGNAL(DelStatusStockv(bool, QString)), w.stockEdit, SLOT(DelStatus(bool, QString)));
+    QObject::connect(&base, SIGNAL(DelStatusStock(bool, QString)), w.stockEdit, SLOT(DelStatus(bool, QString)));
     QObject::connect(&base, SIGNAL(EditStatusStock(bool, QString)), w.stockEdit, SLOT(EditStatus(bool, QString)));
 
     QObject::connect(&base, SIGNAL(AddStatusPurch(bool, QString)), w.purchEdit, SLOT(AddStatus(bool, QString)));

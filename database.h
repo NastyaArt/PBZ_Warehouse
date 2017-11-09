@@ -2,6 +2,7 @@
 #define DATABASE_H
 
 #include <QObject>
+#include <QtSql>
 
 class Database: public QObject
 {
@@ -42,6 +43,7 @@ public slots:
     void EditSales(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
 
 
+    void SetConnectionWithDatabase();
 };
 
 #endif // DATABASE_H

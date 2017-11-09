@@ -40,8 +40,6 @@ private:
     QPushButton *butPurchase;
     QPushButton *butSales;
 
-    void SetConnectionWithDatabase();
-
 };
 
 #endif // MAINWINDOW_H

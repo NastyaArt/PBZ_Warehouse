@@ -46,19 +46,6 @@ MainWindow::MainWindow(QWidget *parent) :
    // SetConnectionWithDatabase();
 }
 
-void MainWindow::SetConnectionWithDatabase()
-{
-
- /*   QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL3");
-    db.setHostName("127.0.0.1");
-    db.setPort(3311);
-    db.setDatabaseName("stocks");
-    db.setUserName("root");
-    db.setPassword("root");
-    bool ok = db.open();
-    QMessageBox::information(this, "Подключение", QString::number(ok), QMessageBox::Ok);
-    */
-}
 
 
 MainWindow::~MainWindow()
