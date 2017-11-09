@@ -25,13 +25,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private:
-    Ui::MainWindow *ui;
-
     InventoryEdit *invEdit;
     StockEdit *stockEdit;
-    PurchaseInvoiceEdit *purchaseEdit;
+    PurchaseInvoiceEdit *purchEdit;
     SalesInvoiceEdit *salesEdit;
+
+private:
+    Ui::MainWindow *ui;
 
     QGroupBox *group;
 

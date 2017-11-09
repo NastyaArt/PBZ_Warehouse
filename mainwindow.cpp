@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     invEdit = new InventoryEdit;
     stockEdit = new StockEdit;
-    purchaseEdit = new PurchaseInvoiceEdit;
+    purchEdit = new PurchaseInvoiceEdit;
     salesEdit = new SalesInvoiceEdit;
 
     group = new QGroupBox("Добавить/Удалить/Изменить:");
@@ -40,10 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
     connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
-    connect (butPurchase, SIGNAL(clicked()), purchaseEdit, SLOT(show()));
+    connect (butPurchase, SIGNAL(clicked()), purchEdit, SLOT(show()));
     connect (butSales, SIGNAL(clicked()), salesEdit, SLOT(show()));
 
-    SetConnectionWithDatabase();
+   // SetConnectionWithDatabase();
 }
 
 void MainWindow::SetConnectionWithDatabase()

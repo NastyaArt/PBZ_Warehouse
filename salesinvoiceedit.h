@@ -65,9 +65,9 @@ private:
     QLineEdit *lnPosEdit;
 
 signals:
-    void AddInvInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
-    void DelInvInfo(int code);
-    void EditInvInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
+    void AddSalesInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
+    void DelSalesInfo(int code);
+    void EditSalesInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
 
 public slots:
 

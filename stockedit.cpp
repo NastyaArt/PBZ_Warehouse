@@ -13,7 +13,7 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
     butEdit = new QPushButton("Изменить");
 
     lblCodeAdd = new QLabel("Номер склада");
-    lblCodeAdd = new QLabel("Наименование склада");
+    lblNameAdd = new QLabel("Наименование склада");
     lblPhoneAdd = new QLabel("Телефон склада");
     lblCodeDel = new QLabel("Номер склада");
     lblCodeEdit = new QLabel("Номер склада");
@@ -102,7 +102,7 @@ void StockEdit::CheckLinesAdd()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-     emit AddInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
+    emit AddStockInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
 }
 
 void StockEdit::CheckLinesDel()
@@ -116,7 +116,7 @@ void StockEdit::CheckLinesDel()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit DelInvInfo(lnCodeAdd->text().toInt());
+    emit DelStockInfo(lnCodeAdd->text().toInt());
 }
 
 void StockEdit::CheckLinesEdit()
@@ -134,7 +134,7 @@ void StockEdit::CheckLinesEdit()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit EditInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
+    emit EditStockInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
 }
 
 void StockEdit::ClearLinesAdd()

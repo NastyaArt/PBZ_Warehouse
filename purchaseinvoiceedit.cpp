@@ -173,7 +173,7 @@ void PurchaseInvoiceEdit::CheckLinesAdd()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit AddInvInfo(lnCodeAdd->text().toInt(), lnDateAdd->text(), lnStockCodeAdd->text().toInt(), lnInvCodeAdd->text().toInt(), lnInvNumbAdd->text().toInt(), lnFIOAdd->text(), lnPosAdd->text());
+    emit AddPurchInfo(lnCodeAdd->text().toInt(), lnDateAdd->text(), lnStockCodeAdd->text().toInt(), lnInvCodeAdd->text().toInt(), lnInvNumbAdd->text().toInt(), lnFIOAdd->text(), lnPosAdd->text());
 }
 
 void PurchaseInvoiceEdit::CheckLinesDel()
@@ -187,7 +187,7 @@ void PurchaseInvoiceEdit::CheckLinesDel()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit DelInvInfo(lnCodeDel->text().toInt());
+    emit DelPurchInfo(lnCodeDel->text().toInt());
 }
 
 void PurchaseInvoiceEdit::CheckLinesEdit()
@@ -223,7 +223,7 @@ void PurchaseInvoiceEdit::CheckLinesEdit()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit EditInvInfo(lnCodeEdit->text().toInt(), lnDateEdit->text(), lnStockCodeEdit->text().toInt(), lnInvCodeEdit->text().toInt(), lnInvNumbEdit->text().toInt(), lnFIOEdit->text(), lnPosEdit->text());
+    emit EditPurchInfo(lnCodeEdit->text().toInt(), lnDateEdit->text(), lnStockCodeEdit->text().toInt(), lnInvCodeEdit->text().toInt(), lnInvNumbEdit->text().toInt(), lnFIOEdit->text(), lnPosEdit->text());
 }
 
 void PurchaseInvoiceEdit::ClearLinesAdd()

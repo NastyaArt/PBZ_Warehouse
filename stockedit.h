@@ -46,9 +46,9 @@ private:
     QLineEdit *lnPhoneEdit;
 
 signals:
-    void AddInvInfo(int code, QString name, QString phone);
-    void DelInvInfo(int code);
-    void EditInvInfo(int code, QString name, QString phone);
+    void AddStockInfo(int code, QString name, QString phone);
+    void DelStockInfo(int code);
+    void EditStockInfo(int code, QString name, QString phone);
 
 public slots:
 
