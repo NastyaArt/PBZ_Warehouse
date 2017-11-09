@@ -82,9 +82,62 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
     setLayout(layAll);
 
     //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
-    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
-    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
-    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(CheckLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(CheckLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(CheckLinesEdit()));
+}
+
+void StockEdit::CheckLinesAdd()
+{
+    if (lnNumbAdd->text()==NULL || lnNameAdd->text()==NULL || lnPhoneAdd->text()==NULL){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnNumbAdd->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsPhone(lnPhoneAdd->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Телефон склада</b> необходимо указать телефон в формате XXX-XX-XX!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Добавление склада", "Добавлено успешно!", QMessageBox::Ok);
+    ClearLinesAdd();
+}
+
+void StockEdit::CheckLinesDel()
+{
+    if (lnNumbDel->text()==NULL){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnNumbDel->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Удаление склада", "Удалено успешно!", QMessageBox::Ok);
+    ClearLinesDel();
+}
+
+void StockEdit::CheckLinesEdit()
+{
+    if ((lnNumbEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnPhoneEdit->text()!=NULL))!=true){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить поле <b>Номер склада</b> и хотя бы еще одно поле!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnNumbEdit->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    if (lnPhoneEdit->text()!=NULL && valid.IsPhone(lnPhoneEdit->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Телефон склада</b> необходимо указать телефон в формате XXX-XX-XX!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Редактирование склада", "Отредактировано успешно!", QMessageBox::Ok);
+    ClearLinesEdit();
 }
 
 void StockEdit::ClearLinesAdd()

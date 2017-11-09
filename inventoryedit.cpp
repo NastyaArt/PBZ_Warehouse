@@ -83,9 +83,54 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     setLayout(layAll);
 
     //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
-    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
-    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
-    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(CheckLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(CheckLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(CheckLinesEdit()));
+}
+
+void InventoryEdit::CheckLinesAdd()
+{
+    if (lnCodeAdd->text()==NULL || lnNameAdd->text()==NULL || lnTipeAdd->text()==NULL){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnCodeAdd->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Добавление инвентаря", "Добавлено успешно!", QMessageBox::Ok);
+    ClearLinesAdd();
+}
+
+void InventoryEdit::CheckLinesDel()
+{
+    if (lnCodeDel->text()==NULL){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnCodeDel->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Удаление инвентаря", "Удалено успешно!", QMessageBox::Ok);
+    ClearLinesDel();
+}
+
+void InventoryEdit::CheckLinesEdit()
+{
+    if ((lnCodeEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnTipeEdit->text()!=NULL))!=true){
+        QMessageBox::information(this, "Ввод данных", "Необходимо заполнить поле <b>Код инвентаря</b> и хотя бы еще одно поле!", QMessageBox::Ok);
+        return;
+    }
+    if (valid.IsNumber(lnCodeEdit->text())==false){
+        QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
+        return;
+    }
+    //отправка инфы в базу
+    QMessageBox::information(this, "Редактирование инвентаря", "Отредактировано успешно!", QMessageBox::Ok);
+    ClearLinesEdit();
 }
 
 void InventoryEdit::ClearLinesAdd()

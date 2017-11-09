@@ -8,6 +8,8 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QMessageBox>
+#include "textvalidation.h"
 
 class SalesInvoiceEdit : public QWidget
 {
@@ -16,6 +18,8 @@ public:
     explicit SalesInvoiceEdit(QWidget *parent = 0);
 
 private:
+    TextValidation valid;
+
     QGroupBox *groupAdd;
     QGroupBox *groupDel;
     QGroupBox *groupEdit;
@@ -64,6 +68,9 @@ signals:
 
 public slots:
 
+    void CheckLinesAdd();
+    void CheckLinesDel();
+    void CheckLinesEdit();
     void ClearLinesAdd();
     void ClearLinesDel();
     void ClearLinesEdit();

@@ -135,9 +135,36 @@ PurchaseInvoiceEdit::PurchaseInvoiceEdit(QWidget *parent) : QWidget(parent)
     setLayout(layAll);
 
     //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
-    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
-    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
-    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(CheckLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(CheckLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(CheckLinesEdit()));
+}
+
+void PurchaseInvoiceEdit::CheckLinesAdd()
+{
+    lnNumberAdd->clear();
+    lnDateAdd->clear();
+    lnStockNumbAdd->clear();
+    lnCodeTMCAdd->clear();
+    lnSalNumbAdd->clear();
+    lnFIOAdd->clear();
+    lnPosAdd->clear();
+}
+
+void PurchaseInvoiceEdit::CheckLinesDel()
+{
+    lnNumberDel->clear();
+}
+
+void PurchaseInvoiceEdit::CheckLinesEdit()
+{
+    lnNumberEdit->clear();
+    lnDateEdit->clear();
+    lnStockNumbEdit->clear();
+    lnCodeTMCEdit->clear();
+    lnSalNumbEdit->clear();
+    lnFIOEdit->clear();
+    lnPosEdit->clear();
 }
 
 void PurchaseInvoiceEdit::ClearLinesAdd()

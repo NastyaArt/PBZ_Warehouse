@@ -19,12 +19,14 @@ SOURCES += main.cpp\
     inventoryedit.cpp \
     stockedit.cpp \
     purchaseinvoiceedit.cpp \
-    salesinvoiceedit.cpp
+    salesinvoiceedit.cpp \
+    textvalidation.cpp
 
 HEADERS  += mainwindow.h \
     inventoryedit.h \
     stockedit.h \
     purchaseinvoiceedit.h \
-    salesinvoiceedit.h
+    salesinvoiceedit.h \
+    textvalidation.h
 
 FORMS    += mainwindow.ui

@@ -8,6 +8,8 @@
 #include <QGroupBox>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QMessageBox>
+#include "textvalidation.h"
 
 class InventoryEdit : public QWidget
 {
@@ -16,6 +18,8 @@ public:
     explicit InventoryEdit(QWidget *parent = 0);
 
 private:
+
+    TextValidation valid;
 
     QGroupBox *groupAdd;
     QGroupBox *groupDel;
@@ -45,14 +49,13 @@ private:
     QLineEdit *lnNameEdit;
     QLineEdit *lnTipeEdit;
 
-
-    // QRegExp fio = ("[А-ЯЁа-яё]+\\s[А-ЯЁ]\\.[А-ЯЁ]\\.");
-   //fio.exactMatch (lines->at(i)->text())==false
-
 signals:
 
 public slots:
 
+    void CheckLinesAdd();
+    void CheckLinesDel();
+    void CheckLinesEdit();
     void ClearLinesAdd();
     void ClearLinesDel();
     void ClearLinesEdit();

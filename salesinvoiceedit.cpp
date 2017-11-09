@@ -133,9 +133,36 @@ SalesInvoiceEdit::SalesInvoiceEdit(QWidget *parent) : QWidget(parent)
 
     setLayout(layAll);
     //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
-    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
-    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
-    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(CheckLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(CheckLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(CheckLinesEdit()));
+}
+
+void SalesInvoiceEdit::CheckLinesAdd()
+{
+    lnNumberAdd->clear();
+    lnDateAdd->clear();
+    lnStockNumbAdd->clear();
+    lnCodeTMCAdd->clear();
+    lnSalNumbAdd->clear();
+    lnFIOAdd->clear();
+    lnPosAdd->clear();
+}
+
+void SalesInvoiceEdit::CheckLinesDel()
+{
+    lnNumberDel->clear();
+}
+
+void SalesInvoiceEdit::CheckLinesEdit()
+{
+    lnNumberEdit->clear();
+    lnDateEdit->clear();
+    lnStockNumbEdit->clear();
+    lnCodeTMCEdit->clear();
+    lnSalNumbEdit->clear();
+    lnFIOEdit->clear();
+    lnPosEdit->clear();
 }
 
 void SalesInvoiceEdit::ClearLinesAdd()
