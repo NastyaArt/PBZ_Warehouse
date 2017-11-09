@@ -2,22 +2,29 @@
 
 Database::Database()
 {
-
+    SetConnectionWithDatabase();
 }
 
 
 void Database::SetConnectionWithDatabase()
 {
 
- /*   QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL3");
-    db.setHostName("127.0.0.1");
-    db.setPort(3311);
-    db.setDatabaseName("stocks");
+    QSqlDatabase db = QSqlDatabase::addDatabase("QODBC");
+    db.setDatabaseName("SQL Server");
     db.setUserName("root");
     db.setPassword("root");
-    bool ok = db.open();
-    QMessageBox::information(this, "Подключение", QString::number(ok), QMessageBox::Ok);
-    */
+//    bool ok = db.open();
+  //  QMessageBox::information(this, "Подключение", QString::number(ok), QMessageBox::Ok);
+
+    if (!db.open()) {
+        qDebug() << db.lastError().text();
+    } else {
+        qDebug("success");
+    }
+    QSqlQuery query;
+    query.exec("create table person (id int primary key, "
+                  "firstname varchar(20), lastname varchar(20))");
+    query.exec("insert into person values(101, 'Danny', 'Young')");
 }
 
 void Database::AddInventory(int code, QString name, QString type)
