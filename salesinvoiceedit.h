@@ -28,43 +28,46 @@ private:
     QPushButton *butDel;
     QPushButton *butEdit;
 
-    QLabel *lblNumberAdd;
+    QLabel *lblCodeAdd;
     QLabel *lblDateAdd;
-    QLabel *lblStockNumbAdd;
-    QLabel *lblCodeTMCAdd;
-    QLabel *lblSalNumbAdd;
+    QLabel *lblStockCodeAdd;
+    QLabel *lblInvCodeAdd;
+    QLabel *lblInvNumbAdd;
     QLabel *lblFIOAdd;
     QLabel *lblPosAdd;
 
-    QLabel *lblNumberDel;
+    QLabel *lblCodeDel;
 
-    QLabel *lblNumberEdit;
+    QLabel *lblCodeEdit;
     QLabel *lblDateEdit;
-    QLabel *lblStockNumbEdit;
-    QLabel *lblCodeTMCEdit;
-    QLabel *lblSalNumbEdit;
+    QLabel *lblStockCodeEdit;
+    QLabel *lblInvCodeEdit;
+    QLabel *lblInvNumbEdit;
     QLabel *lblFIOEdit;
     QLabel *lblPosEdit;
 
-    QLineEdit *lnNumberAdd;
+    QLineEdit *lnCodeAdd;
     QLineEdit *lnDateAdd;
-    QLineEdit *lnStockNumbAdd;
-    QLineEdit *lnCodeTMCAdd;
-    QLineEdit *lnSalNumbAdd;
+    QLineEdit *lnStockCodeAdd;
+    QLineEdit *lnInvCodeAdd;
+    QLineEdit *lnInvNumbAdd;
     QLineEdit *lnFIOAdd;
     QLineEdit *lnPosAdd;
 
-    QLineEdit *lnNumberDel;
+    QLineEdit *lnCodeDel;
 
-    QLineEdit *lnNumberEdit;
+    QLineEdit *lnCodeEdit;
     QLineEdit *lnDateEdit;
-    QLineEdit *lnStockNumbEdit;
-    QLineEdit *lnCodeTMCEdit;
-    QLineEdit *lnSalNumbEdit;
+    QLineEdit *lnStockCodeEdit;
+    QLineEdit *lnInvCodeEdit;
+    QLineEdit *lnInvNumbEdit;
     QLineEdit *lnFIOEdit;
     QLineEdit *lnPosEdit;
 
 signals:
+    void AddInvInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
+    void DelInvInfo(int code);
+    void EditInvInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
 
 public slots:
 
@@ -74,6 +77,9 @@ public slots:
     void ClearLinesAdd();
     void ClearLinesDel();
     void ClearLinesEdit();
+    void AddStatus(bool ok, QString status);
+    void DelStatus(bool ok, QString status);
+    void EditStatus(bool ok, QString status);
 };
 
 #endif // SALESINVOICEEDIT_H

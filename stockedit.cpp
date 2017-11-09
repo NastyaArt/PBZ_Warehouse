@@ -12,25 +12,25 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
     butDel = new QPushButton("Удалить");
     butEdit = new QPushButton("Изменить");
 
-    lblNumbAdd = new QLabel("Номер склада");
-    lblNameAdd = new QLabel("Наименование склада");
+    lblCodeAdd = new QLabel("Номер склада");
+    lblCodeAdd = new QLabel("Наименование склада");
     lblPhoneAdd = new QLabel("Телефон склада");
-    lblNumbDel = new QLabel("Номер склада");
-    lblNumbEdit = new QLabel("Номер склада");
+    lblCodeDel = new QLabel("Номер склада");
+    lblCodeEdit = new QLabel("Номер склада");
     lblNameEdit = new QLabel("Наименование склада");
     lblPhoneEdit = new QLabel("Телефон склада");
 
-    lnNumbAdd = new QLineEdit;
+    lnCodeAdd = new QLineEdit;
     lnNameAdd = new QLineEdit;
     lnPhoneAdd = new QLineEdit;
-    lnNumbDel = new QLineEdit;
-    lnNumbEdit = new QLineEdit;
+    lnCodeDel = new QLineEdit;
+    lnCodeEdit = new QLineEdit;
     lnNameEdit = new QLineEdit;
     lnPhoneEdit = new QLineEdit;
 
     QHBoxLayout *lay1 = new QHBoxLayout;
-    lay1->addWidget(lblNumbAdd);
-    lay1->addWidget(lnNumbAdd);
+    lay1->addWidget(lblCodeAdd);
+    lay1->addWidget(lnCodeAdd);
     QHBoxLayout *lay2 = new QHBoxLayout;
     lay2->addWidget(lblNameAdd);
     lay2->addWidget(lnNameAdd);
@@ -47,8 +47,8 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
     groupAdd->setLayout(layAdd);
 
     QHBoxLayout *lay4 = new QHBoxLayout;
-    lay4->addWidget(lblNumbDel);
-    lay4->addWidget(lnNumbDel);
+    lay4->addWidget(lblCodeDel);
+    lay4->addWidget(lnCodeDel);
 
     QVBoxLayout *layDel = new QVBoxLayout;
     layDel->addLayout(lay4);
@@ -57,8 +57,8 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
     groupDel->setLayout(layDel);
 
     QHBoxLayout *lay5 = new QHBoxLayout;
-    lay5->addWidget(lblNumbEdit);
-    lay5->addWidget(lnNumbEdit);
+    lay5->addWidget(lblCodeEdit);
+    lay5->addWidget(lnCodeEdit);
     QHBoxLayout *lay6 = new QHBoxLayout;
     lay6->addWidget(lblNameEdit);
     lay6->addWidget(lnNameEdit);
@@ -89,11 +89,11 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
 
 void StockEdit::CheckLinesAdd()
 {
-    if (lnNumbAdd->text()==NULL || lnNameAdd->text()==NULL || lnPhoneAdd->text()==NULL){
+    if (lnCodeAdd->text()==NULL || lnNameAdd->text()==NULL || lnPhoneAdd->text()==NULL){
         QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
         return;
     }
-    if (valid.IsNumber(lnNumbAdd->text())==false){
+    if (valid.IsNumber(lnCodeAdd->text())==false){
         QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
@@ -101,33 +101,31 @@ void StockEdit::CheckLinesAdd()
         QMessageBox::information(this, "Ввод данных", "В поле <b>Телефон склада</b> необходимо указать телефон в формате XXX-XX-XX!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Добавление склада", "Добавлено успешно!", QMessageBox::Ok);
-    ClearLinesAdd();
+    //отправка инфы в базу(база должна выслать статус выполения)
+     emit AddInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
 }
 
 void StockEdit::CheckLinesDel()
 {
-    if (lnNumbDel->text()==NULL){
+    if (lnCodeDel->text()==NULL){
         QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
         return;
     }
-    if (valid.IsNumber(lnNumbDel->text())==false){
+    if (valid.IsNumber(lnCodeDel->text())==false){
         QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Удаление склада", "Удалено успешно!", QMessageBox::Ok);
-    ClearLinesDel();
+    //отправка инфы в базу(база должна выслать статус выполения)
+    emit DelInvInfo(lnCodeAdd->text().toInt());
 }
 
 void StockEdit::CheckLinesEdit()
 {
-    if ((lnNumbEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnPhoneEdit->text()!=NULL))!=true){
+    if ((lnCodeEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnPhoneEdit->text()!=NULL))!=true){
         QMessageBox::information(this, "Ввод данных", "Необходимо заполнить поле <b>Номер склада</b> и хотя бы еще одно поле!", QMessageBox::Ok);
         return;
     }
-    if (valid.IsNumber(lnNumbEdit->text())==false){
+    if (valid.IsNumber(lnCodeEdit->text())==false){
         QMessageBox::information(this, "Ввод данных", "В поле <b>Номер склада</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
@@ -135,27 +133,59 @@ void StockEdit::CheckLinesEdit()
         QMessageBox::information(this, "Ввод данных", "В поле <b>Телефон склада</b> необходимо указать телефон в формате XXX-XX-XX!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Редактирование склада", "Отредактировано успешно!", QMessageBox::Ok);
-    ClearLinesEdit();
+    //отправка инфы в базу(база должна выслать статус выполения)
+    emit EditInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
 }
 
 void StockEdit::ClearLinesAdd()
 {
-    lnNumbAdd->clear();
+    lnCodeAdd->clear();
     lnNameAdd->clear();
     lnPhoneAdd->clear();
 }
 
 void StockEdit::ClearLinesDel()
 {
-    lnNumbDel->clear();
+    lnCodeDel->clear();
 }
 
 void StockEdit::ClearLinesEdit()
 {
-    lnNumbEdit->clear();
+    lnCodeEdit->clear();
     lnNameEdit->clear();
     lnPhoneEdit->clear();
+}
+
+void StockEdit::AddStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Добавление склада", status, QMessageBox::Ok);
+        ClearLinesAdd();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Добавление склада", status, QMessageBox::Ok);
+}
+
+void StockEdit::DelStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Удаление склада", status, QMessageBox::Ok);
+        ClearLinesDel();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Удаление склада", status, QMessageBox::Ok);
+}
+
+void StockEdit::EditStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Редактирование склада", status, QMessageBox::Ok);
+        ClearLinesEdit();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Редактирование склада", status, QMessageBox::Ok);
 }
 

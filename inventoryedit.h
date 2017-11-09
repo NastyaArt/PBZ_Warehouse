@@ -31,25 +31,28 @@ private:
 
     QLabel *lblCodeAdd;
     QLabel *lblNameAdd;
-    QLabel *lblTipeAdd;
+    QLabel *lblTypeAdd;
 
     QLabel *lblCodeDel;
 
     QLabel *lblCodeEdit;
     QLabel *lblNameEdit;
-    QLabel *lblTipeEdit;
+    QLabel *lblTypeEdit;
 
     QLineEdit *lnCodeAdd;
     QLineEdit *lnNameAdd;
-    QLineEdit *lnTipeAdd;
+    QLineEdit *lnTypeAdd;
 
     QLineEdit *lnCodeDel;
 
     QLineEdit *lnCodeEdit;
     QLineEdit *lnNameEdit;
-    QLineEdit *lnTipeEdit;
+    QLineEdit *lnTypeEdit;
 
 signals:
+    void AddInvInfo(int code, QString name, QString type);
+    void DelInvInfo(int code);
+    void EditInvInfo(int code, QString name, QString type);
 
 public slots:
 
@@ -59,6 +62,9 @@ public slots:
     void ClearLinesAdd();
     void ClearLinesDel();
     void ClearLinesEdit();
+    void AddStatus(bool ok, QString status);
+    void DelStatus(bool ok, QString status);
+    void EditStatus(bool ok, QString status);
 };
 
 #endif // INVENTORYEDIT_H

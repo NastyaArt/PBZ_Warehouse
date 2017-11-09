@@ -15,19 +15,19 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
 
     lblCodeAdd = new QLabel("Код инвентаря");
     lblNameAdd = new QLabel("Наименование инвентаря");
-    lblTipeAdd = new QLabel("Тип инвентаря");
+    lblTypeAdd = new QLabel("Тип инвентаря");
     lblCodeDel = new QLabel("Код инвентаря");
     lblCodeEdit = new QLabel("Код инвентаря");
     lblNameEdit = new QLabel("Наименование инвентаря");
-    lblTipeEdit = new QLabel("Тип инвентаря");
+    lblTypeEdit = new QLabel("Тип инвентаря");
 
     lnCodeAdd = new QLineEdit;
     lnNameAdd = new QLineEdit;
-    lnTipeAdd = new QLineEdit;
+    lnTypeAdd = new QLineEdit;
     lnCodeDel = new QLineEdit;
     lnCodeEdit = new QLineEdit;
     lnNameEdit = new QLineEdit;
-    lnTipeEdit = new QLineEdit;
+    lnTypeEdit = new QLineEdit;
 
     QHBoxLayout *lay1 = new QHBoxLayout;
     lay1->addWidget(lblCodeAdd);
@@ -36,8 +36,8 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     lay2->addWidget(lblNameAdd);
     lay2->addWidget(lnNameAdd);
     QHBoxLayout *lay3 = new QHBoxLayout;
-    lay3->addWidget(lblTipeAdd);
-    lay3->addWidget(lnTipeAdd);
+    lay3->addWidget(lblTypeAdd);
+    lay3->addWidget(lnTypeAdd);
 
     QVBoxLayout *layAdd = new QVBoxLayout;
     layAdd->addLayout(lay1);
@@ -64,8 +64,8 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     lay6->addWidget(lblNameEdit);
     lay6->addWidget(lnNameEdit);
     QHBoxLayout *lay7 = new QHBoxLayout;
-    lay7->addWidget(lblTipeEdit);
-    lay7->addWidget(lnTipeEdit);
+    lay7->addWidget(lblTypeEdit);
+    lay7->addWidget(lnTypeEdit);
 
     QVBoxLayout *layEdit = new QVBoxLayout;
     layEdit->addLayout(lay5);
@@ -90,7 +90,7 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
 
 void InventoryEdit::CheckLinesAdd()
 {
-    if (lnCodeAdd->text()==NULL || lnNameAdd->text()==NULL || lnTipeAdd->text()==NULL){
+    if (lnCodeAdd->text()==NULL || lnNameAdd->text()==NULL || lnTypeAdd->text()==NULL){
         QMessageBox::information(this, "Ввод данных", "Необходимо заполнить все поля!", QMessageBox::Ok);
         return;
     }
@@ -98,9 +98,9 @@ void InventoryEdit::CheckLinesAdd()
         QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Добавление инвентаря", "Добавлено успешно!", QMessageBox::Ok);
-    ClearLinesAdd();
+    //отправка инфы в базу (база должна выслать статус выполения)
+    emit AddInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnTypeAdd->text());
+
 }
 
 void InventoryEdit::CheckLinesDel()
@@ -113,14 +113,14 @@ void InventoryEdit::CheckLinesDel()
         QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Удаление инвентаря", "Удалено успешно!", QMessageBox::Ok);
-    ClearLinesDel();
+    //отправка инфы в базу (база должна выслать статус выполения)
+    emit DelInvInfo(lnCodeAdd->text().toInt());
+
 }
 
 void InventoryEdit::CheckLinesEdit()
 {
-    if ((lnCodeEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnTipeEdit->text()!=NULL))!=true){
+    if ((lnCodeEdit->text()!=NULL && (lnNameEdit->text()!=NULL || lnTypeEdit->text()!=NULL))!=true){
         QMessageBox::information(this, "Ввод данных", "Необходимо заполнить поле <b>Код инвентаря</b> и хотя бы еще одно поле!", QMessageBox::Ok);
         return;
     }
@@ -128,16 +128,15 @@ void InventoryEdit::CheckLinesEdit()
         QMessageBox::information(this, "Ввод данных", "В поле <b>Код инвентаря</b> необходимо указать целое положительное число!", QMessageBox::Ok);
         return;
     }
-    //отправка инфы в базу
-    QMessageBox::information(this, "Редактирование инвентаря", "Отредактировано успешно!", QMessageBox::Ok);
-    ClearLinesEdit();
+    //отправка инфы в базу (база должна выслать статус выполения)
+    emit EditInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnTypeAdd->text());
 }
 
 void InventoryEdit::ClearLinesAdd()
 {
     lnCodeAdd->clear();
     lnNameAdd->clear();
-    lnTipeAdd->clear();
+    lnTypeAdd->clear();
 }
 
 void InventoryEdit::ClearLinesDel()
@@ -149,6 +148,39 @@ void InventoryEdit::ClearLinesEdit()
 {
     lnCodeEdit->clear();
     lnNameEdit->clear();
-    lnTipeEdit->clear();
+    lnTypeEdit->clear();
+}
+
+void InventoryEdit::AddStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Добавление инвентаря", status, QMessageBox::Ok);
+        ClearLinesAdd();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Добавление инвентаря", status, QMessageBox::Ok);
+}
+
+void InventoryEdit::DelStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Удаление инвентаря", status, QMessageBox::Ok);
+        ClearLinesDel();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Удаление инвентаря", status, QMessageBox::Ok);
+}
+
+void InventoryEdit::EditStatus(bool ok, QString status)
+{
+    if (ok==true){
+        QMessageBox::information(this, "Редактирование инвентаря", status, QMessageBox::Ok);
+        ClearLinesEdit();
+        return;
+    }
+    else
+        QMessageBox::information(this, "Редактирование инвентаря", status, QMessageBox::Ok);
 }
 

@@ -27,25 +27,28 @@ private:
     QPushButton *butDel;
     QPushButton *butEdit;
 
-    QLabel *lblNumbAdd;
+    QLabel *lblCodeAdd;
     QLabel *lblNameAdd;
     QLabel *lblPhoneAdd;
 
-    QLabel *lblNumbDel;
+    QLabel *lblCodeDel;
 
-    QLabel *lblNumbEdit;
+    QLabel *lblCodeEdit;
     QLabel *lblNameEdit;
     QLabel *lblPhoneEdit;
 
-    QLineEdit *lnNumbAdd;
+    QLineEdit *lnCodeAdd;
     QLineEdit *lnNameAdd;
     QLineEdit *lnPhoneAdd;
-    QLineEdit *lnNumbDel;
-    QLineEdit *lnNumbEdit;
+    QLineEdit *lnCodeDel;
+    QLineEdit *lnCodeEdit;
     QLineEdit *lnNameEdit;
     QLineEdit *lnPhoneEdit;
 
 signals:
+    void AddInvInfo(int code, QString name, QString phone);
+    void DelInvInfo(int code);
+    void EditInvInfo(int code, QString name, QString phone);
 
 public slots:
 
@@ -55,6 +58,9 @@ public slots:
     void ClearLinesAdd();
     void ClearLinesDel();
     void ClearLinesEdit();
+    void AddStatus(bool ok, QString status);
+    void DelStatus(bool ok, QString status);
+    void EditStatus(bool ok, QString status);
 };
 
 #endif // STOCKEDIT_H
