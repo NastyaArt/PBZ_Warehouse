@@ -5,9 +5,12 @@
 #include <QPushButton>
 #include <QGroupBox>
 #include <QVBoxLayout>
+#include <QtSql>
+#include <QMessageBox>
 
 #include "inventoryedit.h"
 #include "stockedit.h"
+#include "purchaseinvoiceedit.h"
 #include "salesinvoiceedit.h"
 
 namespace Ui {
@@ -27,6 +30,7 @@ private:
 
     InventoryEdit *invEdit;
     StockEdit *stockEdit;
+    PurchaseInvoiceEdit *purchaseEdit;
     SalesInvoiceEdit *salesEdit;
 
     QGroupBox *group;
@@ -35,6 +39,8 @@ private:
     QPushButton *butStock;
     QPushButton *butPurchase;
     QPushButton *butSales;
+
+    void SetConnectionWithDatabase();
 
 };
 

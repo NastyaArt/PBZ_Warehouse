@@ -6,7 +6,7 @@ SalesInvoiceEdit::SalesInvoiceEdit(QWidget *parent) : QWidget(parent)
 
     groupAdd = new QGroupBox("Добавление расходной");
     groupDel = new QGroupBox("Удаление расходной");
-    groupEdit = new QGroupBox("Редактирование расходной");
+    groupEdit = new QGroupBox("Редактирование расходной(ключ - номер расходной)");
 
     butAdd = new QPushButton("Добавить");
     butDel = new QPushButton("Удалить");
@@ -20,7 +20,7 @@ SalesInvoiceEdit::SalesInvoiceEdit(QWidget *parent) : QWidget(parent)
     lblFIOAdd = new QLabel("ФИО работника");
     lblPosAdd = new QLabel("Должность работника");
 
-    lblNumberDel = new QLabel("Наименование инвентаря");
+    lblNumberDel = new QLabel("Номер расходной");
 
     lblNumberEdit = new QLabel("Номер расходной");
     lblDateEdit = new QLabel("Дата");
@@ -132,6 +132,36 @@ SalesInvoiceEdit::SalesInvoiceEdit(QWidget *parent) : QWidget(parent)
     layAll->addWidget(groupEdit);
 
     setLayout(layAll);
+    //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+}
 
+void SalesInvoiceEdit::ClearLinesAdd()
+{
+    lnNumberAdd->clear();
+    lnDateAdd->clear();
+    lnStockNumbAdd->clear();
+    lnCodeTMCAdd->clear();
+    lnSalNumbAdd->clear();
+    lnFIOAdd->clear();
+    lnPosAdd->clear();
+}
+
+void SalesInvoiceEdit::ClearLinesDel()
+{
+    lnNumberDel->clear();
+}
+
+void SalesInvoiceEdit::ClearLinesEdit()
+{
+    lnNumberEdit->clear();
+    lnDateEdit->clear();
+    lnStockNumbEdit->clear();
+    lnCodeTMCEdit->clear();
+    lnSalNumbEdit->clear();
+    lnFIOEdit->clear();
+    lnPosEdit->clear();
 }
 

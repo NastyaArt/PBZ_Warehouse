@@ -7,39 +7,37 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
 
     groupAdd = new QGroupBox("Добавление инвентаря");
     groupDel = new QGroupBox("Удаление инвентаря");
-    groupEdit = new QGroupBox("Редактирование инвентаря");
+    groupEdit = new QGroupBox("Редактирование инвентаря(ключ - код инвентаря)");
 
     butAdd = new QPushButton("Добавить");
     butDel = new QPushButton("Удалить");
     butEdit = new QPushButton("Изменить");
 
+    lblCodeAdd = new QLabel("Код инвентаря");
     lblNameAdd = new QLabel("Наименование инвентаря");
     lblTipeAdd = new QLabel("Тип инвентаря");
-    lblStockAdd = new QLabel("Номер склада");  // номер склада не нужен !?
-    lblNameDel = new QLabel("Наименование инвентаря");
-    lblStockDel = new QLabel("Номер склада");
+    lblCodeDel = new QLabel("Код инвентаря");
+    lblCodeEdit = new QLabel("Код инвентаря");
     lblNameEdit = new QLabel("Наименование инвентаря");
     lblTipeEdit = new QLabel("Тип инвентаря");
-    lblStockEdit = new QLabel("Номер склада");
 
+    lnCodeAdd = new QLineEdit;
     lnNameAdd = new QLineEdit;
     lnTipeAdd = new QLineEdit;
-    lnStockAdd = new QLineEdit;
-    lnNameDel = new QLineEdit;
-    lnStockDel = new QLineEdit;
+    lnCodeDel = new QLineEdit;
+    lnCodeEdit = new QLineEdit;
     lnNameEdit = new QLineEdit;
     lnTipeEdit = new QLineEdit;
-    lnStockEdit = new QLineEdit;
 
     QHBoxLayout *lay1 = new QHBoxLayout;
-    lay1->addWidget(lblNameAdd);
-    lay1->addWidget(lnNameAdd);
+    lay1->addWidget(lblCodeAdd);
+    lay1->addWidget(lnCodeAdd);
     QHBoxLayout *lay2 = new QHBoxLayout;
-    lay2->addWidget(lblTipeAdd);
-    lay2->addWidget(lnTipeAdd);
+    lay2->addWidget(lblNameAdd);
+    lay2->addWidget(lnNameAdd);
     QHBoxLayout *lay3 = new QHBoxLayout;
-    lay3->addWidget(lblStockAdd);
-    lay3->addWidget(lnStockAdd);
+    lay3->addWidget(lblTipeAdd);
+    lay3->addWidget(lnTipeAdd);
 
     QVBoxLayout *layAdd = new QVBoxLayout;
     layAdd->addLayout(lay1);
@@ -50,29 +48,24 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     groupAdd->setLayout(layAdd);
 
     QHBoxLayout *lay4 = new QHBoxLayout;
-    lay4->addWidget(lblNameDel);
-    lay4->addWidget(lnNameDel);
-
-    QHBoxLayout *lay41 = new QHBoxLayout;
-    lay41->addWidget(lblStockDel);
-    lay41->addWidget(lnStockDel);
+    lay4->addWidget(lblCodeDel);
+    lay4->addWidget(lnCodeDel);
 
     QVBoxLayout *layDel = new QVBoxLayout;
     layDel->addLayout(lay4);
-    layDel->addLayout(lay41);
     layDel->addWidget(butDel);
 
     groupDel->setLayout(layDel);
 
     QHBoxLayout *lay5 = new QHBoxLayout;
-    lay5->addWidget(lblNameEdit);
-    lay5->addWidget(lnNameEdit);
+    lay5->addWidget(lblCodeEdit);
+    lay5->addWidget(lnCodeEdit);
     QHBoxLayout *lay6 = new QHBoxLayout;
-    lay6->addWidget(lblTipeEdit);
-    lay6->addWidget(lnTipeEdit);
+    lay6->addWidget(lblNameEdit);
+    lay6->addWidget(lnNameEdit);
     QHBoxLayout *lay7 = new QHBoxLayout;
-    lay7->addWidget(lblStockEdit);
-    lay7->addWidget(lnStockEdit);
+    lay7->addWidget(lblTipeEdit);
+    lay7->addWidget(lnTipeEdit);
 
     QVBoxLayout *layEdit = new QVBoxLayout;
     layEdit->addLayout(lay5);
@@ -88,5 +81,29 @@ InventoryEdit::InventoryEdit(QWidget *parent) : QWidget(parent)
     layAll->addWidget(groupEdit);
 
     setLayout(layAll);
+
+    //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+}
+
+void InventoryEdit::ClearLinesAdd()
+{
+    lnCodeAdd->clear();
+    lnNameAdd->clear();
+    lnTipeAdd->clear();
+}
+
+void InventoryEdit::ClearLinesDel()
+{
+    lnCodeDel->clear();
+}
+
+void InventoryEdit::ClearLinesEdit()
+{
+    lnCodeEdit->clear();
+    lnNameEdit->clear();
+    lnTipeEdit->clear();
 }
 

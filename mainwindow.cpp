@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     invEdit = new InventoryEdit;
     stockEdit = new StockEdit;
+    purchaseEdit = new PurchaseInvoiceEdit;
     salesEdit = new SalesInvoiceEdit;
 
     group = new QGroupBox("Добавить/Удалить/Изменить:");
@@ -39,11 +40,30 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
     connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
-
+    connect (butPurchase, SIGNAL(clicked()), purchaseEdit, SLOT(show()));
     connect (butSales, SIGNAL(clicked()), salesEdit, SLOT(show()));
+
+    SetConnectionWithDatabase();
 }
+
+void MainWindow::SetConnectionWithDatabase()
+{
+
+ /*   QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL3");
+    db.setHostName("127.0.0.1");
+    db.setPort(3311);
+    db.setDatabaseName("stocks");
+    db.setUserName("root");
+    db.setPassword("root");
+    bool ok = db.open();
+    QMessageBox::information(this, "Подключение", QString::number(ok), QMessageBox::Ok);
+    */
+}
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+

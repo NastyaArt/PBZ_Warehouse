@@ -44,6 +44,10 @@ private:
 signals:
 
 public slots:
+
+    void ClearLinesAdd();
+    void ClearLinesDel();
+    void ClearLinesEdit();
 };
 
 #endif // STOCKEDIT_H

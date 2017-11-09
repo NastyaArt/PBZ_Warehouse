@@ -6,7 +6,7 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
 
     groupAdd = new QGroupBox("Добавление склада");
     groupDel = new QGroupBox("Удаление склада");
-    groupEdit = new QGroupBox("Редактирование склада");
+    groupEdit = new QGroupBox("Редактирование склада(ключ - номер склада)");
 
     butAdd = new QPushButton("Добавить");
     butDel = new QPushButton("Удалить");
@@ -81,5 +81,28 @@ StockEdit::StockEdit(QWidget *parent) : QWidget(parent)
 
     setLayout(layAll);
 
+    //переделать: отправлять сигнал с инфой в базу, а потом уже очищать
+    connect (butAdd, SIGNAL(clicked()), this, SLOT(ClearLinesAdd()));
+    connect (butDel, SIGNAL(clicked()), this, SLOT(ClearLinesDel()));
+    connect (butEdit, SIGNAL(clicked()), this, SLOT(ClearLinesEdit()));
+}
+
+void StockEdit::ClearLinesAdd()
+{
+    lnNumbAdd->clear();
+    lnNameAdd->clear();
+    lnPhoneAdd->clear();
+}
+
+void StockEdit::ClearLinesDel()
+{
+    lnNumbDel->clear();
+}
+
+void StockEdit::ClearLinesEdit()
+{
+    lnNumbEdit->clear();
+    lnNameEdit->clear();
+    lnPhoneEdit->clear();
 }
 

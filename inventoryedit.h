@@ -25,31 +25,37 @@ private:
     QPushButton *butDel;
     QPushButton *butEdit;
 
+    QLabel *lblCodeAdd;
     QLabel *lblNameAdd;
     QLabel *lblTipeAdd;
-    QLabel *lblStockAdd;
 
-    QLabel *lblNameDel;
-    QLabel *lblStockDel;
+    QLabel *lblCodeDel;
 
+    QLabel *lblCodeEdit;
     QLabel *lblNameEdit;
     QLabel *lblTipeEdit;
-    QLabel *lblStockEdit;
 
+    QLineEdit *lnCodeAdd;
     QLineEdit *lnNameAdd;
     QLineEdit *lnTipeAdd;
-    QLineEdit *lnStockAdd;
 
-    QLineEdit *lnNameDel;
-    QLineEdit *lnStockDel;
+    QLineEdit *lnCodeDel;
 
+    QLineEdit *lnCodeEdit;
     QLineEdit *lnNameEdit;
     QLineEdit *lnTipeEdit;
-    QLineEdit *lnStockEdit;
+
+
+    // QRegExp fio = ("[А-ЯЁа-яё]+\\s[А-ЯЁ]\\.[А-ЯЁ]\\.");
+   //fio.exactMatch (lines->at(i)->text())==false
 
 signals:
 
 public slots:
+
+    void ClearLinesAdd();
+    void ClearLinesDel();
+    void ClearLinesEdit();
 };
 
 #endif // INVENTORYEDIT_H

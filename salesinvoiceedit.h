@@ -63,6 +63,10 @@ private:
 signals:
 
 public slots:
+
+    void ClearLinesAdd();
+    void ClearLinesDel();
+    void ClearLinesEdit();
 };
 
 #endif // SALESINVOICEEDIT_H
