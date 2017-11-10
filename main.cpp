@@ -8,10 +8,12 @@ int main(int argc, char *argv[])
     MainWindow w;
     Database base;
 
+    QObject::connect(&base, SIGNAL(ConnectionError()), &w, SLOT(ConnectionError()));
 
     w.setWindowTitle("Учет инвентаря на складах предприятия");
    // w.showMaximized();
     w.show();
+    base.SetConnectionWithDatabase();
 
     QObject::connect(w.invEdit, SIGNAL(AddInvInfo(int, QString, QString)), &base, SLOT(AddInventory(int, QString, QString)));
     QObject::connect(w.invEdit, SIGNAL(DelInvInfo(int)), &base, SLOT(DelInventory(int)));

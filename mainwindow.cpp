@@ -43,10 +43,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect (butPurchase, SIGNAL(clicked()), purchEdit, SLOT(show()));
     connect (butSales, SIGNAL(clicked()), salesEdit, SLOT(show()));
 
-   // SetConnectionWithDatabase();
 }
 
-
+void MainWindow::ConnectionError()
+{
+    QMessageBox::warning(this, "Подключение к базе данных", "Ошибка подключения!", QMessageBox::Ok);
+    setEnabled(false);
+}
 
 MainWindow::~MainWindow()
 {

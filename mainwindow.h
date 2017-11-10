@@ -39,6 +39,8 @@ private:
     QPushButton *butStock;
     QPushButton *butPurchase;
     QPushButton *butSales;
+public slots:
+    void ConnectionError();
 
 };
 

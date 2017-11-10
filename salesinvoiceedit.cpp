@@ -260,7 +260,7 @@ void SalesInvoiceEdit::AddStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Добавление расходной", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Добавление расходной", status, QMessageBox::Ok);
 }
 
 void SalesInvoiceEdit::DelStatus(bool ok, QString status)
@@ -271,7 +271,7 @@ void SalesInvoiceEdit::DelStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Удаление расходной", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Удаление расходной", status, QMessageBox::Ok);
 }
 
 void SalesInvoiceEdit::EditStatus(bool ok, QString status)
@@ -282,6 +282,6 @@ void SalesInvoiceEdit::EditStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Редактирование расходной", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Редактирование расходной", status, QMessageBox::Ok);
 }
 

@@ -114,7 +114,7 @@ void InventoryEdit::CheckLinesDel()
         return;
     }
     //отправка инфы в базу (база должна выслать статус выполения)
-    emit DelInvInfo(lnCodeAdd->text().toInt());
+    emit DelInvInfo(lnCodeDel->text().toInt());
 
 }
 
@@ -129,7 +129,7 @@ void InventoryEdit::CheckLinesEdit()
         return;
     }
     //отправка инфы в базу (база должна выслать статус выполения)
-    emit EditInvInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnTypeAdd->text());
+    emit EditInvInfo(lnCodeEdit->text().toInt(), lnNameEdit->text(), lnTypeEdit->text());
 }
 
 void InventoryEdit::ClearLinesAdd()
@@ -159,7 +159,7 @@ void InventoryEdit::AddStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Добавление инвентаря", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Добавление инвентаря", status, QMessageBox::Ok);
 }
 
 void InventoryEdit::DelStatus(bool ok, QString status)
@@ -170,7 +170,7 @@ void InventoryEdit::DelStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Удаление инвентаря", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Удаление инвентаря", status, QMessageBox::Ok);
 }
 
 void InventoryEdit::EditStatus(bool ok, QString status)
@@ -181,6 +181,6 @@ void InventoryEdit::EditStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Редактирование инвентаря", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Редактирование инвентаря", status, QMessageBox::Ok);
 }
 

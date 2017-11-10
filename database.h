@@ -11,9 +11,11 @@ public:
     Database();
 
 private:
-
+    QSqlDatabase db;
 
 signals:
+    void ConnectionError();
+
     void AddStatusInv(bool ok, QString status);
     void DelStatusInv(bool ok, QString status);
     void EditStatusInv(bool ok, QString status);

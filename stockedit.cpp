@@ -116,7 +116,7 @@ void StockEdit::CheckLinesDel()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit DelStockInfo(lnCodeAdd->text().toInt());
+    emit DelStockInfo(lnCodeDel->text().toInt());
 }
 
 void StockEdit::CheckLinesEdit()
@@ -134,7 +134,7 @@ void StockEdit::CheckLinesEdit()
         return;
     }
     //отправка инфы в базу(база должна выслать статус выполения)
-    emit EditStockInfo(lnCodeAdd->text().toInt(), lnNameAdd->text(), lnPhoneAdd->text());
+    emit EditStockInfo(lnCodeEdit->text().toInt(), lnNameEdit->text(), lnPhoneEdit->text());
 }
 
 void StockEdit::ClearLinesAdd()
@@ -164,7 +164,7 @@ void StockEdit::AddStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Добавление склада", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Добавление склада", status, QMessageBox::Ok);
 }
 
 void StockEdit::DelStatus(bool ok, QString status)
@@ -175,7 +175,7 @@ void StockEdit::DelStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Удаление склада", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Удаление склада", status, QMessageBox::Ok);
 }
 
 void StockEdit::EditStatus(bool ok, QString status)
@@ -186,6 +186,6 @@ void StockEdit::EditStatus(bool ok, QString status)
         return;
     }
     else
-        QMessageBox::information(this, "Редактирование склада", status, QMessageBox::Ok);
+        QMessageBox::warning(this, "Редактирование склада", status, QMessageBox::Ok);
 }
 
