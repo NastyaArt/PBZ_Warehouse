@@ -17,31 +17,63 @@ MainWindow::MainWindow(QWidget *parent) :
     purchEdit = new PurchaseInvoiceEdit;
     salesEdit = new SalesInvoiceEdit;
 
-    group = new QGroupBox("Добавить/Удалить/Изменить:");
+    groupEdit = new QGroupBox("Добавить/Удалить/Изменить:");
+    groupQuery  = new QGroupBox("Выполнить запрос");
+    groupAll  = new QGroupBox;
 
     butInventory = new QPushButton("Рабочий инвентарь");
     butStock = new QPushButton("Склад");
     butPurchase = new QPushButton("Приходная накладная");
     butSales = new QPushButton("Расходная накладная");
 
-    QVBoxLayout *layBut = new QVBoxLayout;
-    layBut->addWidget(butInventory);
-    layBut->addWidget(butStock);
-    layBut->addWidget(butPurchase);
-    layBut->addWidget(butSales);
+    butStocksView = new QPushButton("Просмотреть все склады предприятия");
+    butNumInvView = new QPushButton("Просмотреть количество заданного инвентаря на заданном складе");
+    butPurchSalesView = new QPushButton("Просмотреть приходы и расходы инвентаря на всех складах предприятия");
+    butStockRecCardView = new QPushButton("Просмотреть карточки складского учета");
 
-    layBut->setAlignment(Qt::AlignTop);
+    QVBoxLayout *layButEdit = new QVBoxLayout;
+    layButEdit->addWidget(butInventory);
+    layButEdit->addWidget(butStock);
+    layButEdit->addWidget(butPurchase);
+    layButEdit->addWidget(butSales);
+    layButEdit->setAlignment(Qt::AlignTop);
 
-    group->setFixedSize(200, 150);
+    groupEdit->setFixedSize(200, 150);
+    groupEdit->setLayout(layButEdit);
 
-    group->setLayout(layBut);
+    QVBoxLayout *layButQuery = new QVBoxLayout;
+    layButQuery->addWidget(butStocksView);
+    layButQuery->addWidget(butNumInvView);
+    layButQuery->addWidget(butPurchSalesView);
+    layButQuery->addWidget(butStockRecCardView);
+    layButQuery->setAlignment(Qt::AlignTop);
 
-    setCentralWidget(group);
+    groupQuery->setFixedSize(500, 150);
+    groupQuery->setLayout(layButQuery);
+
+    QHBoxLayout *layAll = new QHBoxLayout;
+    layAll->addWidget(groupEdit);
+    layAll->addWidget(groupQuery);
+    layAll->setAlignment(Qt::AlignTop);
+
+    groupAll->setLayout(layAll);
+    setCentralWidget(groupAll);
+
+    stocksView = new AllStocksView();
+    numInvView = new NumOfInventoryView();
+    purchSalesView = new PurchAndSalesView();
+    stockRecCardView = new StockRecordCardView();
+
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
     connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
     connect (butPurchase, SIGNAL(clicked()), purchEdit, SLOT(show()));
     connect (butSales, SIGNAL(clicked()), salesEdit, SLOT(show()));
+
+    connect (butStocksView, SIGNAL(clicked()), stocksView, SLOT(show()));
+    connect (butNumInvView, SIGNAL(clicked()), numInvView, SLOT(show()));
+    connect (butPurchSalesView, SIGNAL(clicked()), purchSalesView, SLOT(show()));
+    connect (butStockRecCardView, SIGNAL(clicked()), stockRecCardView, SLOT(show()));
 
 }
 

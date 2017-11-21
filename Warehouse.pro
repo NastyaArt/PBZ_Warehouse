@@ -21,7 +21,11 @@ SOURCES += main.cpp\
     purchaseinvoiceedit.cpp \
     salesinvoiceedit.cpp \
     textvalidation.cpp \
-    database.cpp
+    database.cpp \
+    numofinventoryview.cpp \
+    purchandsalesview.cpp \
+    allstocksview.cpp \
+    stockrecordcardview.cpp
 
 HEADERS  += mainwindow.h \
     inventoryedit.h \
@@ -29,6 +33,10 @@ HEADERS  += mainwindow.h \
     purchaseinvoiceedit.h \
     salesinvoiceedit.h \
     textvalidation.h \
-    database.h
+    database.h \
+    numofinventoryview.h \
+    purchandsalesview.h \
+    allstocksview.h \
+    stockrecordcardview.h
 
 FORMS    += mainwindow.ui

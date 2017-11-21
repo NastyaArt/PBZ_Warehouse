@@ -2,6 +2,11 @@
 #include "database.h"
 #include <QApplication>
 
+#include "allstocksview.h"
+#include "numofinventoryview.h"
+#include "purchandsalesview.h"
+#include "stockrecordcardview.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -14,6 +19,19 @@ int main(int argc, char *argv[])
    // w.showMaximized();
     w.show();
     base.SetConnectionWithDatabase();
+
+    AllStocksView stocksView;
+    stocksView.show();
+
+    NumOfInventoryView numInvView;
+    numInvView.show();
+
+    PurchAndSalesView purchSalesView;
+    purchSalesView.show();
+
+    StockRecordCardView stockRecCardView;
+    stockRecCardView.show();
+
 
     QObject::connect(w.invEdit, SIGNAL(AddInvInfo(int, QString, QString)), &base, SLOT(AddInventory(int, QString, QString)));
     QObject::connect(w.invEdit, SIGNAL(DelInvInfo(int)), &base, SLOT(DelInventory(int)));

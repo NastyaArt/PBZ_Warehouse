@@ -5,10 +5,8 @@ Database::Database()
 
 }
 
-
 void Database::SetConnectionWithDatabase()
 {
-
     db = QSqlDatabase::addDatabase("QODBC");
     db.setDatabaseName("SQL Server");
     db.setUserName("root");
@@ -21,7 +19,6 @@ void Database::SetConnectionWithDatabase()
     } else {
         qDebug("Success");
     }
-
 }
 
 void Database::AddInventory(int code, QString name, QString type)
@@ -35,7 +32,6 @@ void Database::AddInventory(int code, QString name, QString type)
     if (query.exec())
         emit AddStatusInv(true, "Выполнено успешно");
     else emit AddStatusInv(false, query.lastError().text());
-
 }
 
 void Database::DelInventory(int code)
@@ -96,7 +92,6 @@ void Database::DelStock(int code)
     if (query.exec())
         emit DelStatusStock(true, "Выполнено успешно");
     else emit DelStatusStock(false, query.lastError().text());
-
 }
 
 void Database::EditStock(int code, QString name, QString phone)
@@ -124,7 +119,6 @@ void Database::EditStock(int code, QString name, QString phone)
         }
     }
     emit EditStatusStock(true, "Выполнено успешно");
-
 }
 
 void Database::AddPurchase(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos)
@@ -321,5 +315,4 @@ void Database::EditSales(int code, QString date, int codeStock, int codeInv, int
         }
     }
     emit EditStatusSales(true, "Выполнено успешно");
-
 }

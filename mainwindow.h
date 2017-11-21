@@ -12,6 +12,10 @@
 #include "stockedit.h"
 #include "purchaseinvoiceedit.h"
 #include "salesinvoiceedit.h"
+#include "allstocksview.h"
+#include "numofinventoryview.h"
+#include "purchandsalesview.h"
+#include "stockrecordcardview.h"
 
 namespace Ui {
 class MainWindow;
@@ -33,12 +37,25 @@ public:
 private:
     Ui::MainWindow *ui;
 
-    QGroupBox *group;
+    AllStocksView *stocksView;
+    NumOfInventoryView *numInvView;
+    PurchAndSalesView *purchSalesView;
+    StockRecordCardView * stockRecCardView;
+
+    QGroupBox *groupEdit;
+    QGroupBox *groupQuery;
+    QGroupBox *groupAll;
 
     QPushButton *butInventory;
     QPushButton *butStock;
     QPushButton *butPurchase;
     QPushButton *butSales;
+
+    QPushButton *butStocksView;
+    QPushButton *butNumInvView;
+    QPushButton *butPurchSalesView;
+    QPushButton *butStockRecCardView;
+
 public slots:
     void ConnectionError();
 
