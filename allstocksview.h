@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QMessageBox>
 #include <QSqlQueryModel>
+#include <QtSql>
 #include <QTableView>
 
 class AllStocksView : public QWidget

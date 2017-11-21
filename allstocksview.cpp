@@ -35,7 +35,4 @@ void AllStocksView::SetupModel()
     tableView->resizeColumnsToContents();
     tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-
-
-
 }

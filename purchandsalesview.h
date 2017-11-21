@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QSqlQueryModel>
 #include <QTableView>
+#include <QtSql>
 #include "textvalidation.h"
 
 class PurchAndSalesView : public QWidget

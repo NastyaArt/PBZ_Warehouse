@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    base = new Database;
+    base->SetConnectionWithDatabase();
 
     QList<QToolBar *> toolbars = this->findChildren<QToolBar *>();
     for (int i = 0; i < toolbars.length(); i++)
@@ -74,6 +76,43 @@ MainWindow::MainWindow(QWidget *parent) :
     connect (butNumInvView, SIGNAL(clicked()), numInvView, SLOT(show()));
     connect (butPurchSalesView, SIGNAL(clicked()), purchSalesView, SLOT(show()));
     connect (butStockRecCardView, SIGNAL(clicked()), stockRecCardView, SLOT(show()));
+
+    connect(base, SIGNAL(ConnectionError()), this, SLOT(ConnectionError()));
+
+
+    connect(invEdit, SIGNAL(AddInvInfo(int, QString, QString)), base, SLOT(AddInventory(int, QString, QString)));
+    connect(invEdit, SIGNAL(DelInvInfo(int)), base, SLOT(DelInventory(int)));
+    connect(invEdit, SIGNAL(EditInvInfo(int, QString, QString)), base, SLOT(EditInventory(int, QString, QString)));
+
+    connect(stockEdit, SIGNAL(AddStockInfo(int, QString, QString)), base, SLOT(AddStock(int, QString, QString)));
+    connect(stockEdit, SIGNAL(DelStockInfo(int)), base, SLOT(DelStock(int)));
+    connect(stockEdit, SIGNAL(EditStockInfo(int, QString, QString)), base, SLOT(EditStock(int, QString, QString)));
+
+    connect(purchEdit, SIGNAL(AddPurchInfo(int, QString, int, int, int, QString, QString)), base, SLOT(AddPurchase(int, QString, int, int, int, QString, QString)));
+    connect(purchEdit, SIGNAL(DelPurchInfo(int)), base, SLOT(DelPurchase(int)));
+    connect(purchEdit, SIGNAL(EditPurchInfo(int, QString, int, int, int, QString, QString)), base, SLOT(EditPurchase(int, QString, int, int, int, QString, QString)));
+
+    connect(salesEdit, SIGNAL(AddSalesInfo(int, QString, int, int, int, QString, QString)), base, SLOT(AddSales(int, QString, int, int, int, QString, QString)));
+    connect(salesEdit, SIGNAL(DelSalesInfo(int)), base, SLOT(DelSales(int)));
+    connect(salesEdit, SIGNAL(EditSalesInfo(int, QString, int, int, int, QString, QString)), base, SLOT(EditSales(int, QString, int, int, int, QString, QString)));
+
+
+    connect(base, SIGNAL(AddStatusInv(bool, QString)), invEdit, SLOT(AddStatus(bool, QString)));
+    connect(base, SIGNAL(DelStatusInv(bool, QString)), invEdit, SLOT(DelStatus(bool, QString)));
+    connect(base, SIGNAL(EditStatusInv(bool, QString)), invEdit, SLOT(EditStatus(bool, QString)));
+
+    connect(base, SIGNAL(AddStatusStock(bool, QString)), stockEdit, SLOT(AddStatus(bool, QString)));
+    connect(base, SIGNAL(DelStatusStock(bool, QString)), stockEdit, SLOT(DelStatus(bool, QString)));
+    connect(base, SIGNAL(EditStatusStock(bool, QString)), stockEdit, SLOT(EditStatus(bool, QString)));
+
+    connect(base, SIGNAL(AddStatusPurch(bool, QString)), purchEdit, SLOT(AddStatus(bool, QString)));
+    connect(base, SIGNAL(DelStatusPurch(bool, QString)), purchEdit, SLOT(DelStatus(bool, QString)));
+    connect(base, SIGNAL(EditStatusPurch(bool, QString)), purchEdit, SLOT(EditStatus(bool, QString)));
+
+    connect(base, SIGNAL(AddStatusSales(bool, QString)), salesEdit, SLOT(AddStatus(bool, QString)));
+    connect(base, SIGNAL(DelStatusSales(bool, QString)), salesEdit, SLOT(DelStatus(bool, QString)));
+    connect(base, SIGNAL(EditStatusSales(bool, QString)), salesEdit, SLOT(EditStatus(bool, QString)));
+
 
 }
 

@@ -6,7 +6,7 @@ PurchAndSalesView::PurchAndSalesView(QWidget *parent) : QWidget(parent)
 
     setWindowTitle("Просмотр приходов и расходов на всех складах предприятия");
 
-    lblName = new QLabel("Тип инвентаря: ");
+    lblName = new QLabel("Наименование инвентаря: ");
     lnName = new QLineEdit;
 
     butSrch = new QPushButton("Поиск");
@@ -31,16 +31,16 @@ void PurchAndSalesView::SetupModel()
 {
 
     model = new QSqlQueryModel(this);
-    model->setQuery("SELECT result.type, result.date, result.numberOfInventory, stocks.name"
-                    "FROM (SELECT 'Приход' AS type, date, numberOfInventory, codeStock, codeInventory"
-                    "FROM purchase"
-                    "UNION"
-                    "SELECT 'Расход' AS type, date, numberOfInventory, codeStock, codeInventory"
-                    "FROM sales"
-                    "ORDER BY date) result"
-                    "INNER JOIN inventory ON inventory.code=result.codeInventory"
-                    "INNER JOIN stocks ON stocks.code=result.codeStock"
-                    "WHERE inventory.name=" + lnName->text());
+    model->setQuery("SELECT result.type, result.date, result.numberOfInventory, stocks.name "
+                    "FROM (SELECT 'Приход' AS type, date, numberOfInventory, codeStock, codeInventory "
+                    "FROM purchase "
+                    "UNION "
+                    "SELECT 'Расход' AS type, date, numberOfInventory, codeStock, codeInventory "
+                    "FROM sales "
+                    "ORDER BY date) result "
+                    "INNER JOIN inventory ON inventory.code=result.codeInventory "
+                    "INNER JOIN stocks ON stocks.code=result.codeStock "
+                    "WHERE inventory.name= '" + lnName->text() + "'");
     tableView->setModel(model);
 
     model->setHeaderData(0,Qt::Horizontal,"Тип накладной");

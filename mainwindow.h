@@ -8,6 +8,7 @@
 #include <QtSql>
 #include <QMessageBox>
 
+#include "database.h"
 #include "inventoryedit.h"
 #include "stockedit.h"
 #include "purchaseinvoiceedit.h"
@@ -29,6 +30,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    Database *base;
     InventoryEdit *invEdit;
     StockEdit *stockEdit;
     PurchaseInvoiceEdit *purchEdit;

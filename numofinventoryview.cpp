@@ -33,13 +33,12 @@ NumOfInventoryView::NumOfInventoryView(QWidget *parent) : QWidget(parent)
 
 void NumOfInventoryView::SetupModel()
 {
-
     model = new QSqlQueryModel(this);
-    model->setQuery("SELECT inventory.name, purch.numberPurchase, IFNULL(sal.numberSales,0) AS numberSales, purch.numberPurchase-IFNULL(sal.numberSales,0) AS number"
-                    "FROM inventory"
-                    "JOIN (SELECT codeInventory, SUM(numberOfInventory) AS numberPurchase FROM purchase WHERE codeStock=" + lnStock->text() + " GROUP BY codeInventory) purch ON inventory.code=purch.codeInventory"
-                    "LEFT JOIN (SELECT codeInventory, SUM(numberOfInventory) AS numberSales FROM sales WHERE codeStock=" + lnStock->text() + " GROUP BY codeInventory) sal ON inventory.code=sal.codeInventory"
-                    "WHERE  inventory.type=" + lnType->text());
+    model->setQuery("SELECT inventory.name, purch.numberPurchase, IFNULL(sal.numberSales,0) AS numberSales, purch.numberPurchase-IFNULL(sal.numberSales,0) AS number "
+                    "FROM inventory "
+                    "JOIN (SELECT codeInventory, SUM(numberOfInventory) AS numberPurchase FROM purchase WHERE codeStock=" + lnStock->text() + "  GROUP BY codeInventory) purch ON inventory.code=purch.codeInventory "
+                    "LEFT JOIN (SELECT codeInventory, SUM(numberOfInventory) AS numberSales FROM sales WHERE codeStock=" + lnStock->text() + "  GROUP BY codeInventory) sal ON inventory.code=sal.codeInventory "
+                    "WHERE  inventory.type= '" + lnType->text() +"' ");
     tableView->setModel(model);
 
     model->setHeaderData(0,Qt::Horizontal,"Наименование инвентаря");

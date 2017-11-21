@@ -35,15 +35,15 @@ void StockRecordCardView::SetupModel()
 {
 
     model = new QSqlQueryModel(this);
-    model->setQuery("SELECT result.date, result.type, result.numberOfInventory, result.workerName, result.workerPosition"
-                    "FROM (SELECT 'Приход' AS type, date, numberOfInventory, codeStock, codeInventory,  workerName, workerPosition"
-                    "FROM purchase"
-                    "UNION"
-                    "SELECT 'Расход' AS type, date, numberOfInventory, codeStock, codeInventory,  workerName, workerPosition"
-                    "FROM sales"
-                    "ORDER BY date) result"
-                    "INNER JOIN inventory ON inventory.code=result.codeInventory"
-                    "WHERE inventory.name=" + lnName->text() +"AND result.codeStock=" + lnStock->text());
+    model->setQuery("SELECT result.date, result.type, result.numberOfInventory, result.workerName, result.workerPosition "
+                    "FROM (SELECT 'Приход' AS type, date, numberOfInventory, codeStock, codeInventory,  workerName, workerPosition "
+                    "FROM purchase "
+                    "UNION "
+                    "SELECT 'Расход' AS type, date, numberOfInventory, codeStock, codeInventory,  workerName, workerPosition "
+                    "FROM sales "
+                    "ORDER BY date) result "
+                    "INNER JOIN inventory ON inventory.code=result.codeInventory "
+                    "WHERE inventory.name= '" + lnName->text() +"' AND result.codeStock= '" + lnStock->text()+ "'");
     tableView->setModel(model);
 
     model->setHeaderData(0,Qt::Horizontal,"Дата");
@@ -51,6 +51,7 @@ void StockRecordCardView::SetupModel()
     model->setHeaderData(2,Qt::Horizontal,"Количество инвентаря");
     model->setHeaderData(3,Qt::Horizontal,"ФИО работника");
     model->setHeaderData(4,Qt::Horizontal,"Должность работника");
+    //qDebug() << model->lastError().text();
 
 
     // Разрешаем выделение строк
