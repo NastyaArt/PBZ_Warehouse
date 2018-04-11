@@ -257,6 +257,7 @@ void SalesInvoiceEdit::AddStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Добавление расходной", status, QMessageBox::Ok);
         ClearLinesAdd();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -268,6 +269,7 @@ void SalesInvoiceEdit::DelStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Удаление расходной", status, QMessageBox::Ok);
         ClearLinesDel();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -279,6 +281,7 @@ void SalesInvoiceEdit::EditStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Редактирование расходной", status, QMessageBox::Ok);
         ClearLinesEdit();
+        emit UpdateDatabase();
         return;
     }
     else

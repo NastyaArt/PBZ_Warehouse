@@ -67,6 +67,7 @@ signals:
     void AddPurchInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
     void DelPurchInfo(int code);
     void EditPurchInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
+    void UpdateDatabase();
 
 public slots:
 

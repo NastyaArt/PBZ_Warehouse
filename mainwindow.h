@@ -60,6 +60,7 @@ private:
 
 public slots:
     void ConnectionError();
+    void UploadView();
 
 };
 

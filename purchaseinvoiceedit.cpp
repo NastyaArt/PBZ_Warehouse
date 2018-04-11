@@ -258,6 +258,7 @@ void PurchaseInvoiceEdit::AddStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Добавление приходной", status, QMessageBox::Ok);
         ClearLinesAdd();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -269,6 +270,7 @@ void PurchaseInvoiceEdit::DelStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Удаление приходной", status, QMessageBox::Ok);
         ClearLinesDel();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -280,6 +282,7 @@ void PurchaseInvoiceEdit::EditStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Редактирование приходной", status, QMessageBox::Ok);
         ClearLinesEdit();
+        emit UpdateDatabase();
         return;
     }
     else

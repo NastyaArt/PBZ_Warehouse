@@ -66,6 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     purchSalesView = new PurchAndSalesView();
     stockRecCardView = new StockRecordCardView();
 
+    UploadView();
 
     connect (butInventory, SIGNAL(clicked()), invEdit, SLOT(show()));
     connect (butStock, SIGNAL(clicked()), stockEdit, SLOT(show()));
@@ -114,6 +115,23 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(base, SIGNAL(EditStatusSales(bool, QString)), salesEdit, SLOT(EditStatus(bool, QString)));
 
 
+    connect(invEdit, SIGNAL(UpdateDatabase()), this, SLOT(UploadView()));
+    connect(stockEdit, SIGNAL(UpdateDatabase()), this, SLOT(UploadView()));
+    connect(purchEdit, SIGNAL(UpdateDatabase()), this, SLOT(UploadView()));
+    connect(salesEdit, SIGNAL(UpdateDatabase()), this, SLOT(UploadView()));
+
+
+    void UpdateDatabase();
+
+
+}
+
+void MainWindow::UploadView()
+{
+    stocksView->SetupModel();
+    numInvView->SetupModel();
+    purchSalesView->SetupModel();
+    stockRecCardView->SetupModel();
 }
 
 void MainWindow::ConnectionError()

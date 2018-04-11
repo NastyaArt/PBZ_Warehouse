@@ -49,6 +49,7 @@ signals:
     void AddStockInfo(int code, QString name, QString phone);
     void DelStockInfo(int code);
     void EditStockInfo(int code, QString name, QString phone);
+    void UpdateDatabase();
 
 public slots:
 

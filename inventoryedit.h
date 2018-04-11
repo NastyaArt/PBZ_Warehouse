@@ -53,6 +53,7 @@ signals:
     void AddInvInfo(int code, QString name, QString type);
     void DelInvInfo(int code);
     void EditInvInfo(int code, QString name, QString type);
+    void UpdateDatabase();
 
 public slots:
 
@@ -65,6 +66,7 @@ public slots:
     void AddStatus(bool ok, QString status);
     void DelStatus(bool ok, QString status);
     void EditStatus(bool ok, QString status);
+
 };
 
 #endif // INVENTORYEDIT_H

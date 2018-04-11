@@ -161,6 +161,7 @@ void StockEdit::AddStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Добавление склада", status, QMessageBox::Ok);
         ClearLinesAdd();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -172,6 +173,7 @@ void StockEdit::DelStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Удаление склада", status, QMessageBox::Ok);
         ClearLinesDel();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -180,9 +182,11 @@ void StockEdit::DelStatus(bool ok, QString status)
 
 void StockEdit::EditStatus(bool ok, QString status)
 {
+
     if (ok==true){
         QMessageBox::information(this, "Редактирование склада", status, QMessageBox::Ok);
         ClearLinesEdit();
+        emit UpdateDatabase();
         return;
     }
     else

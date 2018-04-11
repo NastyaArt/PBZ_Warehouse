@@ -156,6 +156,7 @@ void InventoryEdit::AddStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Добавление инвентаря", status, QMessageBox::Ok);
         ClearLinesAdd();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -167,6 +168,7 @@ void InventoryEdit::DelStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Удаление инвентаря", status, QMessageBox::Ok);
         ClearLinesDel();
+        emit UpdateDatabase();
         return;
     }
     else
@@ -178,6 +180,7 @@ void InventoryEdit::EditStatus(bool ok, QString status)
     if (ok==true){
         QMessageBox::information(this, "Редактирование инвентаря", status, QMessageBox::Ok);
         ClearLinesEdit();
+        emit UpdateDatabase();
         return;
     }
     else

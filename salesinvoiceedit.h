@@ -68,6 +68,7 @@ signals:
     void AddSalesInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
     void DelSalesInfo(int code);
     void EditSalesInfo(int code, QString date, int codeStock, int codeInv, int numbInv, QString fio, QString pos);
+    void UpdateDatabase();
 
 public slots:
 
